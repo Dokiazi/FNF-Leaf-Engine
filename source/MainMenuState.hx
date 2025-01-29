@@ -112,8 +112,8 @@ class MainMenuState extends MusicBeatState
 			menuItem.scale.x = 0.0;
 			menuItem.scale.y = 0.4;
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/' + optionShit[i]);
-			menuItem.animation.addByPrefix('idle', optionShit[i] + " idle0", 24);
-			menuItem.animation.addByPrefix('selected', optionShit[i] + " selected0", 24);
+			menuItem.animation.addByPrefix('idle', optionShit[i] + " idle", 24);
+			menuItem.animation.addByPrefix('selected', optionShit[i] + " selected", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
 			menuItem.screenCenter(X);
