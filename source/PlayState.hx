@@ -1134,14 +1134,14 @@ class PlayState extends MusicBeatState
 		ScoreText.scrollFactor.set();
 		add(ScoreText);
 
-		botplayTxt = new FlxText(400, timeBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
+		botplayTxt = new FlxText(400, healthBarBG.y + 55, FlxG.width - 800, "BOTPLAY", 32);
 		botplayTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		botplayTxt.scrollFactor.set();
 		botplayTxt.borderSize = 1.25;
 		botplayTxt.visible = cpuControlled;
 		add(botplayTxt);
 		if(ClientPrefs.downScroll) {
-			botplayTxt.y = timeBarBG.y - 78;
+			botplayTxt.y = healthBarBG.y - 78;
 		}
 
 		strumLineNotes.cameras = [camHUD];
@@ -2359,7 +2359,6 @@ class PlayState extends MusicBeatState
 
 		// Song duration in a float, useful for the time left feature
 		songLength = FlxG.sound.music.length;
-		FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 		FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 
 		switch(curStage)
@@ -3086,25 +3085,24 @@ class PlayState extends MusicBeatState
 					// trace('MISSED FRAME');
 				}
 
-				if(updateTime) {
-					var curTime:Float = Conductor.songPosition - ClientPrefs.noteOffset;
-					if(curTime < 0) curTime = 0;
-					songPercent = (curTime / songLength);
-
-					var songCalc:Float = (songLength - curTime);
-					if(ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
-
-					var secondsTotal:Int = Math.floor(songCalc / 1000);
-					if(secondsTotal < 0) secondsTotal = 0;
-
-					if(ClientPrefs.timeBarType != 'Song Name')
-						timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
+				//if(updateTime) {
+				//	var curTime:Float = Conductor.songPosition - ClientPrefs.noteOffset;
+				//	if(curTime < 0) curTime = 0;
+				//	songPercent = (curTime / songLength);
+				//
+				//	var songCalc:Float = (songLength - curTime);
+				//	if(ClientPrefs.timeBarType == 'Time Elapsed') songCalc = curTime;
+				//
+				//	var secondsTotal:Int = Math.floor(songCalc / 1000);
+				//	if(secondsTotal < 0) secondsTotal = 0;
+				//
+				//	if(ClientPrefs.timeBarType != 'Song Name')
+				//		timeTxt.text = FlxStringUtil.formatTime(secondsTotal, false);
 				}
 			}
 
 			// Conductor.lastSongPos = FlxG.sound.music.time;
-		}
-
+			
 		if (camZooming)
 		{
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay * playbackRate), 0, 1));
