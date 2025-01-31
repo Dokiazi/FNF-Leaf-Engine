@@ -63,8 +63,8 @@ class VisualsUISubState extends BaseOptionsMenu
 		addOption(option);
 		
 		#if !mobile
-		var option:Option = new Option('FPS',
-			'it hides FPS if unchecked.',
+		var option:Option = new Option('Debug Information',
+			'Shows debug information.',
 			'showFPS',
 			'bool',
 			true);
