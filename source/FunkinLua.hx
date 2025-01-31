@@ -2013,16 +2013,16 @@ class FunkinLua {
 
 			PlayState.instance.healthBar.createFilledBar(left, right);
 			PlayState.instance.healthBar.updateBar();
-		//});
-		//Lua_helper.add_callback(lua, "setTimeBarColors", function(leftHex:String, rightHex:String) {
-			//var left:FlxColor = Std.parseInt(leftHex);
-			//if(!leftHex.startsWith('0x')) left = Std.parseInt('0xff' + leftHex);
-			//var right:FlxColor = Std.parseInt(rightHex);
-			//if(!rightHex.startsWith('0x')) right = Std.parseInt('0xff' + rightHex);
+		});
+		Lua_helper.add_callback(lua, "setTimeBarColors", function(leftHex:String, rightHex:String) {
+			var left:FlxColor = Std.parseInt(leftHex);
+			if(!leftHex.startsWith('0x')) left = Std.parseInt('0xff' + leftHex);
+			var right:FlxColor = Std.parseInt(rightHex);
+			if(!rightHex.startsWith('0x')) right = Std.parseInt('0xff' + rightHex);
 
-			//PlayState.instance.timeBar.createFilledBar(right, left);
-			//PlayState.instance.timeBar.updateBar();
-		//});
+			PlayState.instance.timeBar.createFilledBar(right, left);
+			PlayState.instance.timeBar.updateBar();
+		});
 
 		Lua_helper.add_callback(lua, "setObjectCamera", function(obj:String, camera:String = '') {
 			/*if(PlayState.instance.modchartSprites.exists(obj)) {
@@ -2770,7 +2770,8 @@ class FunkinLua {
 
 		call('onCreate', []);
 		#end
-		
+	}
+
 	public static function isOfTypes(value:Any, types:Array<Dynamic>)
 	{
 		for (type in types)
