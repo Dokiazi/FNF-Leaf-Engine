@@ -1039,17 +1039,6 @@ class PlayState extends MusicBeatState
 		}
 		updateTime = showTime;
 
-		timeBarBG = new AttachedSprite('timeBar');
-		timeBarBG.x = timeTxt.x;
-		timeBarBG.y = timeTxt.y + (timeTxt.height / 4);
-		timeBarBG.scrollFactor.set();
-		timeBarBG.alpha = 0;
-		timeBarBG.visible = showTime;
-		timeBarBG.color = FlxColor.BLACK;
-		timeBarBG.xAdd = -4;
-		timeBarBG.yAdd = -4;
-		add(timeBarBG);
-
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 		add(grpNoteSplashes);
@@ -1151,7 +1140,6 @@ class PlayState extends MusicBeatState
 		iconP2.cameras = [camHUD];
 		ScoreText.cameras = [camHUD];
 		botplayTxt.cameras = [camHUD];
-		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
 
@@ -3888,8 +3876,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		timeBarBG.visible = false;
-		timeBar.visible = false;
 		timeTxt.visible = false;
 		canPause = false;
 		endingSong = true;
