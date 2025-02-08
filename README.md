@@ -1,7 +1,7 @@
 # OoB Engine
-A Fresh new engine that's have a very huge compatibility with Kade Engine Lua while having same with Psych Engine Lua
+A Fresh new engine that's have a very huge compatibility with Kade Engine Lua while having same with Psych Engine Lua (didn't add this yet btw)
 # Features
-* Smooth Healthbar
+* Smooth Healthbar (in development)
 * Very Satisfying Gameplay
 * and very good for mods and specially for Sunday Morning Project
 # Compiling
