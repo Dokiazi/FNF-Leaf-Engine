@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': OutBox Engine" file="OoBEngine" packageName="com.dokiazi.oob" package="com.dokiazi.oob" main="Main" version="0.2.8" company="Dokiazi" />
+	<app title="Friday Night Funkin': OutBox Engine" file="OoBEngine" packageName="com.dokiazi.oob" package="com.dokiazi.oob" main="Main" version="0.5.3" company="Dokiazi" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -48,7 +48,7 @@
 	<define name="LUA_ALLOWED" if="desktop" />
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="VIDEOS_ALLOWED" if="web || windows" unless="32bits"/>
-	<define name="OUTBOX_WATERMARKS"/> <!-- Delete this if you want to remove dev watermark -->
+	<define name="OUTBOX_WATERMARK"/> <!-- Delete this if you want to remove dev watermark -->
 	<define name="TITLE_SCREEN_EASTER_EGG" if="officialBuild"/> <!-- DELETE THE if="officialBuild" for enabling this on an unofficial build -->
 	<define name="CRASH_HANDLER" if="desktop release" />
 
