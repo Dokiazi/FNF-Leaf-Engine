@@ -23,19 +23,19 @@ import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
-class MainMenuState extends MusicBeatSubstate
+class MainMenuState extends MusicBeatState
 {
-	public static var oobEngineVersion:String = ' - OoB 0.1.0'; //This is also used for Discord RPC
+	public static var oobEngineVersion:String = ' - OoB 0.1.1'; //This is also used for Discord RPC
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 	private var camGame:FlxCamera;
-	private var camAchievement:FlxCamera
+	private var camAchievement:FlxCamera;
 	
 	var optionShit:Array<String> = [
-		'storymode',
+		'story_mode',
 		'freeplay',
-		'merch',
+		#if !switch 'merch', #end
 		'options',
 		'credits'
 	];
@@ -65,6 +65,9 @@ class MainMenuState extends MusicBeatSubstate
 		FlxG.cameras.reset(camGame);
 		FlxG.cameras.add(camAchievement, false);
 		FlxG.cameras.setDefaultDrawTarget(camGame, true);
+
+		transIn = FlxTransitionableState.defaultTransIn;
+		transOut = FlxTransitionableState.defaultTransOut;
 
 		persistentUpdate = persistentDraw = true;
 
@@ -105,9 +108,6 @@ class MainMenuState extends MusicBeatSubstate
 		{
 			var offset:Float = 108 - (Math.max(optionShit.length, 4) - 4) * 80;
 			var menuItem:FlxSprite = new FlxSprite(0, (i * 140)  + offset);
-			var spacing = 160;
-   			var top = (FlxG.height - (spacing * (menuItems.length - 1))) / 2;
-   			for (i in 0...menuItems.length)
 			menuItem.scale.x = scale;
 			menuItem.scale.y = scale;
 			menuItem.frames = Paths.getSparrowAtlas('mainmenu/' + optionShit[i]);
@@ -119,8 +119,7 @@ class MainMenuState extends MusicBeatSubstate
 			menuItems.add(menuItem);
 			var scr:Float = (optionShit.length - 4) * 0.135;
 			if(optionShit.length < 6) scr = 0;
-			menuItem.scrollFactor.x = 0.0;
-			menuItem.scrollFactor.y = 0.4;
+			menuItem.scrollFactor.set(0, scr);
 			menuItem.antialiasing = ClientPrefs.globalAntialiasing;
 			//menuItem.setGraphicSize(Std.int(menuItem.width * 0.58));
 			menuItem.updateHitbox();
@@ -128,7 +127,7 @@ class MainMenuState extends MusicBeatSubstate
 
 		FlxG.camera.follow(camFollowPos, null, 1);
 
-		var versionShit:FlxText = new FlxText(12, FlxG.height - 18, 0, "v" + Application.current.meta.get('version') +  oobEngineVersion, 12);
+		var versionShit:FlxText = new FlxText(12, FlxG.height - 24, 0, "v" + Application.current.meta.get('version'), "FNF" + oobEngineVersion, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		add(versionShit);
@@ -137,8 +136,30 @@ class MainMenuState extends MusicBeatSubstate
 
 		changeItem();
 
+		#if ACHIEVEMENTS_ALLOWED
+		Achievements.loadAchievements();
+		var leDate = Date.now();
+		if (leDate.getDay() == 5 && leDate.getHours() >= 18) {
+			var achieveID:Int = Achievements.getAchievementIndex('friday_night_play');
+			if(!Achievements.isAchievementUnlocked(Achievements.achievementsStuff[achieveID][2])) { //It's a friday night. WEEEEEEEEEEEEEEEEEE
+				Achievements.achievementsMap.set(Achievements.achievementsStuff[achieveID][2], true);
+				giveAchievement();
+				ClientPrefs.saveSettings();
+			}
+		}
+		#end
+
 		super.create();
 	}
+
+	#if ACHIEVEMENTS_ALLOWED
+	// Unlocks "Freaky on a Friday Night" achievement
+	function giveAchievement() {
+		add(new AchievementObject('friday_night_play', camAchievement));
+		FlxG.sound.play(Paths.sound('confirmMenu'), 0.7);
+		trace('Giving achievement "friday_night_play"');
+	}
+	#end
 
 	var selectedSomethin:Bool = false;
 
@@ -207,7 +228,7 @@ class MainMenuState extends MusicBeatSubstate
 
 								switch (daChoice)
 								{
-									case 'storymode':
+									case 'story_mode':
 										MusicBeatState.switchState(new StoryMenuState());
 									case 'freeplay':
 										MusicBeatState.switchState(new FreeplayState());
