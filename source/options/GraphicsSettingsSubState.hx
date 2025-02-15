@@ -60,6 +60,20 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			true); //Default value
 		addOption(option);
 
+		#if !html5 //Apparently other framerates isn't correctly supported on Browser? Probably it has some V-Sync shit enabled by default, idk
+		var option:Option = new Option('FPS',
+			"Pretty self explanatory, isn't it?",
+			'framerate',
+			'int',
+			60);
+		addOption(option);
+
+		option.minValue = 30;
+		option.maxValue = 300;
+		option.displayFormat = '%v FPS';
+		option.onChange = onChangeFramerate;
+		#end
+
 		super();
 	}
 
