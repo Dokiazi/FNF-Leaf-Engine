@@ -2870,7 +2870,7 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		displayedHealth = FlxMath.lerp(displayedHealth, health, .7/(ClientPrefs.framerate / 60));
+		displayedHealth = FlxMath.lerp(displayedHealth, health, .15/(ClientPrefs.framerate / 60));
 		/*if (FlxG.keys.justPressed.NINE)
 		{
 			iconP1.swapOldIcon();
