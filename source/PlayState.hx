@@ -185,11 +185,6 @@ class PlayState extends MusicBeatState
 	public var healthBar:FlxBar;
 	var songPercent:Float = 0;
 	var healthLerp:Float = 1.0;
-	function onCreatePost()
-    	game.healthBar.valueFunction = function() return healthLerp;
-
-	function onUpdate(elapsed:Float)
-    	healthLerp = FlxMath.lerp(healthLerp, game.health,)
 
 	private var timeBarBG:AttachedSprite;
 	public var timeBar:FlxBar;
