@@ -48,20 +48,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false); //Default value
 		addOption(option);
 
-		var option:Option = new Option('Middlescroll',
-			'If checked, your notes get centered.',
-			'middleScroll',
-			'bool',
-			false);
-		addOption(option);
-
-		var option:Option = new Option('Opponent Notes',
-			'If unchecked, opponent notes get hidden.',
-			'opponentStrums',
-			'bool',
-			true);
-		addOption(option);
-
 		var option:Option = new Option('Ghost Tapping',
 			"If checked, you won't get misses from pressing keys\nwhile there are no notes able to be hit.",
 			'ghostTapping',
@@ -74,13 +60,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			'noReset',
 			'bool',
 			false);
-		addOption(option);
-
-		var option:Option = new Option('Hitsound Volume',
-			'Funny notes does \"Tick!\" when you hit them."',
-			'hitsoundVolume',
-			'percent',
-			0);
 		addOption(option);
 		option.scrollSpeed = 1.6;
 		option.minValue = 0.0;
