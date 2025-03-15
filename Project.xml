@@ -25,6 +25,7 @@
 
 	<!--HTML5-specific-->
 	<window if="html5" resizable="true" />
+	<app title="Friday Night Funkin': Leaf Engine (HTML5/Browser WEBGL)" if="html5" />
 
 	<!--Desktop-specific-->
 	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
@@ -35,11 +36,9 @@
 	<!--Switch-specific-->
 	<window if="switch" orientation="landscape" fullscreen="true" width="0" height="0" resizable="true" />
 
-	<!--The name bru-->
+	<!--Windows-specific-->
 	<app title="Friday Night Funkin': Leaf Engine (x86/PC OPENGL)" if="32bits" />
 	<app title="Friday Night Funkin': Leaf Engine (x64/PC OPENGL)" unless="32bits" />
-
-	<!-- _____________________________ Mac OS Settings ____________________________ -->
 
 	<app title="Friday Night Funkin': Leaf Engine (x64/Mac OPENGL)" if="mac" />
 
