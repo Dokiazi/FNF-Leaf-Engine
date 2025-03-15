@@ -130,7 +130,7 @@ class Main extends Sprite
 			}
 		}
 
-		errMsg += "\nUncaught Error: " + e.error + "Nico Cady :D, IT'S NOT NICK!, it's simon, SIMON!, SEA MAN-";
+		errMsg += "\nUncaught Error: " + e.error + " Nico Cady :D, IT'S NOT NICK!, it's simon, SIMON!, SEA MAN-";
 
 		if (!FileSystem.exists("./logs/"))
 			FileSystem.createDirectory("./logs/");
