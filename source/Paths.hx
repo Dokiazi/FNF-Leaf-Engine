@@ -360,7 +360,7 @@ class Paths
 			localTrackedAssets.push(path);
 			return currentTrackedAssets.get(path);
 		}
-		trace('oh no its returning null NOOOO');
+		trace('its returning null yay *crash* jk lmao');
 		return null;
 	}
 

@@ -25,7 +25,10 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	public static var leafVersion:String = ' - Leaf Engine 0.1.1'; //This is also used for Discord RPC
+	#if 32bits
+	public static var leafVersion:String = ' - Leaf Engine 0.1.1 (32-bits)';
+	#end
+	public static var leafVersion:String = ' - Leaf Engine 0.1.1';
 	public static var curSelected:Int = 0;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
